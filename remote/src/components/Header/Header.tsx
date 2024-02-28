@@ -27,7 +27,7 @@ import logo from '../../../assets/logo.svg';
 // import { fetchDummyAuthData } from '../../services/getApiDummyAuthData';
 
 import createEventSource from "../../services/eventService";
-import apiDummyData from '../../api/apiDummyData.json';~
+import apiDummyData from '../../api/apiDummyData.json';
 //import apiDummyAuthData from '../../api/apiDummyAuthData.json';
 
 // #region Interfaces
@@ -59,7 +59,7 @@ import apiDummyData from '../../api/apiDummyData.json';~
 // };
 // #endregion
 
-const Header = () => {
+const Header: React.FC = () => {
   const [isAuthenticated, setIsAuthenticated] = useState<string>();
   const [authName, setAuthName] = useState<string>();
   const [cookies, setCookies] = useState<any>();
