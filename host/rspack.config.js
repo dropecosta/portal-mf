@@ -79,7 +79,7 @@ module.exports = {
       filename: 'remoteEntry.js',
       exposes: {},
       remotes: {
-        "remote": "remote@http://localhost:8081/remoteEntry.js"
+        "remote": "remote@http://localhost:8081/remoteEntry.js"       
       },
       shared: {
         react: { eager: true },

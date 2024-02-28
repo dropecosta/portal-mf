@@ -1,7 +1,11 @@
 import React, { FC } from "react";
 import { FederatedFooter, PublicFooter } from "@ama-pt/agora-design-system";
 import "@ama-pt/agora-design-system/dist/index.css";
-
+import prr from '../../../assets/prr.svg';
+import europa from '../../../assets/europa.svg';
+import acessibilidade from '../../../assets/acessibilidade.png';
+import republicaPortuguesa from '../../../assets/republica-portuguesa.png';
+import republicaPortuguesaSmall from '../../../assets/republica-portuguesa.svg';
 interface FooterProps {
   isPublic: boolean;
 }
@@ -11,7 +15,7 @@ const Footer: FC<FooterProps> = ({ isPublic }) => {
     badgeImage: {
       image: {
         alt: "Selo de ouro de usabilidade e acessibilidade",
-        src: "/acessibilidade.png",
+        src: acessibilidade,
       },
       link: {
         href: "https://selo.usabilidade.gov.pt/",
@@ -22,7 +26,7 @@ const Footer: FC<FooterProps> = ({ isPublic }) => {
     brandImage: {
       image: {
         alt: "Logótipo República Portuguesa",
-        src: "/republica-portuguesa.png",
+        src: republicaPortuguesa,
       },
       link: {
         href: "https://www.portugal.gov.pt/pt/gc22",
@@ -59,7 +63,7 @@ const Footer: FC<FooterProps> = ({ isPublic }) => {
       {
         image: {
           alt: "Logótipo PRR",
-          src: "/prr.svg",
+          src: prr,
         },
         link: {
           href: "https://recuperarportugal.gov.pt/",
@@ -70,7 +74,7 @@ const Footer: FC<FooterProps> = ({ isPublic }) => {
       {
         image: {
           alt: "Logótipo República Portuguesa",
-          src: "/republica-portuguesa.svg",
+          src: republicaPortuguesaSmall,
         },
         link: {
           href: "https://www.portugal.gov.pt/pt/gc22",
@@ -81,7 +85,7 @@ const Footer: FC<FooterProps> = ({ isPublic }) => {
       {
         image: {
           alt: "Logótipo Next Generation EU",
-          src: "/europa.svg",
+          src: europa,
         },
         link: {
           href: 'https://ec.europa.eu/info/strategy/recovery-plan-europe_pt"',
@@ -140,7 +144,7 @@ const Footer: FC<FooterProps> = ({ isPublic }) => {
     usefulLinks: [
       {
         children: "Acessibilidade",
-        href: "/acessibilidade",
+        href: acessibilidade,
         target: "_self",
       },
       {
@@ -165,7 +169,7 @@ const Footer: FC<FooterProps> = ({ isPublic }) => {
     badgeImage: {
       image: {
         alt: "Selo de ouro de usabilidade e acessibilidade",
-        src: "/acessibilidade.png",
+        src: acessibilidade,
       },
       link: {
         href: "https://selo.usabilidade.gov.pt/",
@@ -176,7 +180,7 @@ const Footer: FC<FooterProps> = ({ isPublic }) => {
     brandImage: {
       image: {
         alt: "Logótipo República Portuguesa",
-        src: "/republica-portuguesa.png",
+        src: republicaPortuguesa,
       },
       link: {
         href: "https://www.portugal.gov.pt/pt/gc22",
@@ -213,7 +217,7 @@ const Footer: FC<FooterProps> = ({ isPublic }) => {
       {
         image: {
           alt: "Logótipo PRR",
-          src: "/assets/prr.svg",
+          src: prr,
         },
         link: {
           href: "https://recuperarportugal.gov.pt/",
@@ -224,7 +228,7 @@ const Footer: FC<FooterProps> = ({ isPublic }) => {
       {
         image: {
           alt: "Logótipo República Portuguesa",
-          src: "/republica-portuguesa.svg",
+          src: republicaPortuguesaSmall,
         },
         link: {
           href: "https://www.portugal.gov.pt/pt/gc22",
@@ -235,7 +239,7 @@ const Footer: FC<FooterProps> = ({ isPublic }) => {
       {
         image: {
           alt: "Logótipo Next Generation EU",
-          src: "/europa.svg",
+          src: europa,
         },
         link: {
           href: 'https://ec.europa.eu/info/strategy/recovery-plan-europe_pt"',

@@ -20,6 +20,10 @@ module.exports = {
     rules: [
       {
         test: /\.svg$/,
+        type: 'asset/resource',
+      },
+      {
+        test: /\.png$/,
         type: 'asset',
       },
       {
@@ -75,7 +79,7 @@ module.exports = {
   },
   plugins: [
     new rspack.container.ModuleFederationPlugin({
-      name: 'pu_mf_app',
+      name: 'remote',
       filename: 'remoteEntry.js',
       exposes: {
         './Header': './src/components/Header',
