@@ -1,0 +1,31 @@
+{
+  "headerGeneralOptions": {
+    "menuItemsHeaderGeneralOptions": {
+      "language": {
+        "menuItem": {
+          "itemType": "primary",
+          "children": "Language"
+        },
+        "submenuItem": {
+          "submenuAriaLabel": "Language",
+          "actionItem": true,
+          "submenuItems": [
+            {
+              "children": "Language 1",
+              "leadingIcon": "no-icon",
+              "leadingIconHover": "no-icon",
+              "href": "#"
+            },
+            {
+              "children": "Language 2",
+              "leadingIcon": "no-icon",
+              "leadingIconHover": "no-icon",
+              "href": "#"
+            }
+          ],
+          "submenuType": "language"
+        }
+      }
+    }
+  }
+}

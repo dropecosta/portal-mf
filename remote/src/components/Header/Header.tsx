@@ -16,19 +16,20 @@ import {
   ToastProvider,
   stringToBoolean,
 } from "@ama-pt/agora-design-system";
-import { HeaderProps, ToastType, useToast } from "@ama-pt/agora-design-system";
+import { HeaderProps, ToastType } from "@ama-pt/agora-design-system";
 import "@ama-pt/agora-design-system/dist/index.css";
 import classNames from "classnames";
 import { Notification } from "../Notification/Notification";
-import Cookies from "js-cookie";
 import logo from '../../../assets/logo.svg';
+// import Cookies from "js-cookie";
 
 // import { fetchDummyData } from '../../services/getApiDummyData';
 // import { fetchDummyAuthData } from '../../services/getApiDummyAuthData';
 
 import createEventSource from "../../services/eventService";
-import apiDummyData from '../../api/apiDummyData.json';
-//import apiDummyAuthData from '../../api/apiDummyAuthData.json';
+import apiDummyDataShared from '../../api/apiDummyDataShared.json';
+// import apiDummyAuthData from '../../api/apiDummyAuthData.json';
+// import apiFooterGereralOption from '../../api/apiFooterHeaderGeneralOptions.json';
 
 // #region Interfaces
 // interface NotificationData extends HederProps {
@@ -60,10 +61,10 @@ import apiDummyData from '../../api/apiDummyData.json';
 // #endregion
 
 const Header: React.FC = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState<string>();
-  const [authName, setAuthName] = useState<string>();
-  const [cookies, setCookies] = useState<any>();
-  const [languageCoookie, setLanguageCoookie] = useState(Cookies.get("GUEST_LANGUAGE_ID"));
+  // const [isAuthenticated, setIsAuthenticated] = useState<string>();
+  // const [authName, setAuthName] = useState<string>();
+  // const [cookies, setCookies] = useState<any>();
+  // const [languageCoookie, setLanguageCoookie] = useState(Cookies.get("GUEST_LANGUAGE_ID"));
   const [limited, setLimited] = useState<boolean>(true);
   const [toastTitle, setToastTitle] = useState<string>("");
   const [toastDescription, setToastDescription] = useState<string>("");
@@ -96,9 +97,9 @@ const Header: React.FC = () => {
   // #endregion
 
   // #region *Handler logo and navigation on logo when not homepage. Please don't copy/paste, improve it.
-  const imageClassName = classNames(
-    "xs:w-[190px] xs:h-[24px] md:w-[190px] md:h-[24px] xl:w-[254px] xl:h-[32px]"
-  );
+  // const imageClassName = classNames(
+  //   "xs:w-[190px] xs:h-[24px] md:w-[190px] md:h-[24px] xl:w-[254px] xl:h-[32px]"
+  // );
 
   const getHeaderNavigationContent = () => {
     // Simulando a função window.location.href para fins de exemplo
@@ -1452,8 +1453,6 @@ const Header: React.FC = () => {
   // } as HeaderProps;
 
   const [data, setData] = useState<HeaderProps>(dummyData as unknown as HeaderProps);
-  
-  const { showToast } = useToast();
 
   // #region *Handler authentication, saving on session storage a auth with value true. Note:* This handler is for dummy purpose. This should handler by your application.- NOT USE THIS ON PRODUCTION
   const handleAuth = () => {
@@ -1554,6 +1553,10 @@ const Header: React.FC = () => {
   //#endregion
 
   // Dummy Auth data - NOT USE THIS ON PRODUCTION
+  
+
+
+  // dummyAuthData customizado
   const dummyAuthData = {
     ...data,
     headerGeneralOptions: {
@@ -1600,7 +1603,89 @@ const Header: React.FC = () => {
               onClick: () => {
                 console.log("Clicked close button");
                 sessionStorage.removeItem("auth");
-                setData({...dummyData, ...apiDummyData});
+
+                // setData({...dummyData});
+                
+                setData({
+                  ...dummyData,
+                  ...apiDummyDataShared,
+
+                  // Objeto de exemplo para API para evitar erro/type checking
+                  headerGeneralOptions: {
+                    ...dummyData.headerGeneralOptions,
+                    menuItemsHeaderGeneralOptions: {
+                      ...dummyData.headerGeneralOptions.menuItemsHeaderGeneralOptions,
+                      language: {
+                        menuItem: {
+                          itemType: "primary",
+                          children: "Language",
+                          onClick: () => {
+                            console.log('firstLanguage');
+                          },
+                        },
+                        submenuItem: {
+                          submenuAriaLabel: "Language",
+                          actionItem: true,
+                          submenuItems: [
+                            {
+                              children: "Language 1",
+                              leadingIcon: "no-icon",
+                              leadingIconHover: "no-icon",
+                              href: "#",
+                            },
+                            {
+                              children: "Language 2",
+                              leadingIcon: "no-icon",
+                              leadingIconHover: "no-icon",
+                              href: "#",
+                            },
+                          ],
+                          submenuType: "language",
+                        },
+                      },
+                    },
+                  },
+                  headerPrimaryNavigation: {
+                    ...dummyData.headerPrimaryNavigation,
+                    headerNavigationType: "primary",
+                    menuItemsHeaderNavigation: [
+                      {
+                        menuItem: {
+                          itemType: "primary",
+                          "aria-current": "page",
+                          noIcons: "true",
+                          children: "Menu Item 1",
+                          onClick: (evt: any) => {
+                            handleCurrentPage(evt, "primary");
+                          },
+                        },
+                        relatedNavMenu: {
+                          ariaLabelHeaderNavigation: "Label",
+                          headerNavigationLegalSentence: "Legal Sentence",
+                          headerNavigationType: "primary",
+                          menuItemsHeaderNavigation: [
+                            {
+                              menuItem: {
+                                itemType: "primary",
+                                "aria-current": "page",
+                                "aria-haspopup": true,
+                                "aria-expanded": false,
+                                children: "Sub. item 1-1",
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                  headerSecondaryNavigation: {
+                    ariaLabelHeaderNavigation: "Label",
+                    headerNavigationLegalSentence: "Legal Sentence",
+                    menuItemsHeaderNavigation: [],
+                    headerNavigationType: "secondary",
+                  },
+                });
+        
               },
             } as DrawerFooterProps,
           } as DrawerContentProps,
@@ -1902,253 +1987,7 @@ const Header: React.FC = () => {
     } as HeaderNavigationProps,
   } as HeaderProps;
 
-
-  // dummyAuthData customizado
-  // const dummyAuthData = {
-  //   ...data,
-  //   headerGeneralOptions: {
-  //     ...data.headerGeneralOptions,
-  //     menuItemsHeaderGeneralOptions: {
-  //       ...data.headerGeneralOptions.menuItemsHeaderGeneralOptions,
-  //       user: {
-  //         menuItem: {
-  //           avatarType: "initials",
-  //           srcPath: "AZ",
-  //           interactive: true,
-  //           alt: "WARNING: Replace with correct alt descriptive of avatar",
-  //           information:
-  //             "WARNING: Replace with correct tooltip information descriptive of avatar",
-  //         },
-  //         drawerContent: {
-  //           headerLabel: "Replace Drawer Title",
-  //           menuDrawer: {
-  //             "aria-label":
-  //               "WARNING: Replace with correct aria-label descriptive of drawer",
-  //             items: [
-  //               {
-  //                 leadingIcon: "no-icon",
-  //                 leadingIconHover: "no-icon",
-  //                 href: "#",
-  //                 children: "Anchor 1",
-  //               },
-  //               {
-  //                 leadingIcon: "no-icon",
-  //                 leadingIconHover: "no-icon",
-  //                 href: "#",
-  //                 children: "Anchor 2",
-  //               },
-  //               {
-  //                 leadingIcon: "no-icon",
-  //                 leadingIconHover: "no-icon",
-  //                 href: "#",
-  //                 children: "Anchor 3",
-  //               },
-  //             ],
-  //           } as DrawerMenuProps,
-  //           footer: {
-  //             footerLabel: "Close Button Label"
-  //           },
-  //         },
-  //       },
-  //     },
-  //   },
-  //   headerPrimaryNavigation: {
-  //     ...data.headerPrimaryNavigation,
-  //     menuItemsHeaderNavigation: [
-  //       {
-  //         menuItem: {
-  //           "aria-current": "page",
-  //           noIcons: "true",
-  //           children: "Menu Item 1"
-  //         },
-  //         relatedNavMenu: {
-  //           menuItemsHeaderNavigation: [
-  //             {
-  //               menuItem: {
-  //                 "aria-current": "page",
-  //                 "aria-haspopup": true,
-  //                 "aria-expanded": false,
-  //                 children: "Sub. item 1-1",
-  //               },
-  //               submenuItem: {
-  //                 submenuAriaLabel:
-  //                   "WARNING: Replace with correct aria label descriptive of submenu item 1-1 options",
-  //                 actionItem: false,
-  //                 hasSubmenuItemsTitle: true,
-  //                 submenuItemsTitle:
-  //                   "WARNING: Replace with correct title according with submenuType and your project",
-  //                 submenuItems: [
-  //                   {
-  //                     children: "Option 1",
-  //                     leadingIcon: "no-icon",
-  //                     leadingIconHover: "no-icon",
-  //                     href: "/example.com",
-  //                   },
-  //                   {
-  //                     children: "Option 2",
-  //                     leadingIcon: "no-icon",
-  //                     leadingIconHover: "no-icon",
-  //                     href: "/example.com",
-  //                   }
-  //                 ],
-  //                 highlightItems: {
-  //                   submenuAriaLabel:
-  //                     "WARNING: Replace with correct aria label descriptive of highlighted options",
-  //                   actionItem: false,
-  //                   submenuItems: [
-  //                     {
-  //                       children: "Highlight option 1",
-  //                       trailingIcon: "no-icon",
-  //                       trailingIconHover: "no-icon",
-  //                       href: "/example.com",
-  //                     },
-  //                     {
-  //                       children: "Highlight option 2",
-  //                       trailingIcon: "no-icon",
-  //                       trailingIconHover: "no-icon",
-  //                       href: "/example.com",
-  //                     }
-  //                   ],
-  //                   submenuType: "link",
-  //                 },
-  //                 submenuType: "topics",
-  //               },
-  //             },
-  //             {
-  //               menuItem: {
-  //                 noIcons: true,
-  //                 href: "/example.com",
-  //                 children: "Sub. item 1-2"
-  //               },
-  //             },
-  //             {
-  //               menuItem: {
-  //                 noIcons: true,
-  //                 href: "/example.com",
-  //                 children: "Sub. item 1-3"
-  //               },
-  //             },
-  //           ] as MenuProps[],
-  //         } as HeaderNavigationProps,
-  //       },
-  //       {
-  //         menuItem: {
-  //           children: "Menu Item 2",
-  //           actionItem: false,
-  //           "aria-haspopup": true,
-  //           "aria-expanded": false,
-  //         },
-  //         submenuItem: {
-  //           submenuAriaLabel:
-  //             "WARNING: Replace with correct aria label descriptive of submenu item 2-1 options",
-  //           actionItem: false,
-  //           submenuItems: [
-  //             {
-  //               children: "Option 1",
-  //               leadingIcon: "no-icon",
-  //               leadingIconHover: "no-icon",
-  //               href: "https://example.com",
-  //             },
-  //             {
-  //               children: "Option 2",
-  //               leadingIcon: "no-icon",
-  //               leadingIconHover: "no-icon",
-  //               href: "https://example.com",
-  //             },
-  //             {
-  //               children: "Option 3",
-  //               leadingIcon: "no-icon",
-  //               leadingIconHover: "no-icon",
-  //               href: "https://example.com",
-  //             },
-  //             {
-  //               children: "Option 4",
-  //               leadingIcon: "no-icon",
-  //               leadingIconHover: "no-icon",
-  //               href: "https://example.com",
-  //             },
-  //             {
-  //               children: "Option 5",
-  //               leadingIcon: "no-icon",
-  //               leadingIconHover: "no-icon",
-  //               href: "https://example.com",
-  //             },
-  //             {
-  //               children: "Option 6",
-  //               leadingIcon: "no-icon",
-  //               leadingIconHover: "no-icon",
-  //               href: "https://example.com",
-  //             },
-  //           ],
-  //           submenuType: "platform",
-  //           submenuAlignment: "end",
-  //         },
-  //       },
-  //       {
-  //         menuItem: {
-  //           "aria-haspopup": true,
-  //           "aria-expanded": false,
-  //           children: "Menu Item 3"
-  //         },
-  //         submenuItem: {
-  //           submenuAriaLabel:
-  //             "WARNING: Replace with correct aria label descriptive of submenu item 3-1 options",
-  //           actionItem: false,
-  //           hasSubmenuItemsTitle: true,
-  //           submenuItemsTitle:
-  //             "WARNING: Replace with correct title according with submenuType and your project",
-  //           submenuItems: [
-  //             {
-  //               children: "Option 1",
-  //               leadingIcon: "no-icon",
-  //               leadingIconHover: "no-icon",
-  //               href: "/example.com",
-  //             },
-  //             {
-  //               children: "Option 2",
-  //               leadingIcon: "no-icon",
-  //               leadingIconHover: "no-icon",
-  //               href: "/example.com",
-  //             }
-  //           ],
-  //           highlightItems: {
-  //             submenuAriaLabel:
-  //               "WARNING: Replace with correct aria label descriptive of highlighted options",
-  //             actionItem: false,
-  //             submenuItems: [
-  //               {
-  //                 children: "Highlight option 1",
-  //                 trailingIcon: "no-icon",
-  //                 trailingIconHover: "no-icon",
-  //                 href: "/example.com",
-  //               },
-  //               {
-  //                 children: "Highlight option 2",
-  //                 trailingIcon: "no-icon",
-  //                 trailingIconHover: "no-icon",
-  //                 href: "/example.com",
-  //               }
-  //             ],
-  //             submenuType: "link",
-  //           },
-  //           submenuType: "topics",
-  //         },
-  //       },
-  //       {
-  //         menuItem: {
-  //           noIcons: "true",
-  //           href: "#example",
-  //           children: "Menu Item 4"
-  //         },
-  //         // relatedNavMenu: {
-  //         //   freeMenuItemsHeaderNavigation: getHeaderNavigationToFreeContent(),
-  //         // } as HeaderNavigationProps,
-  //       },
-  //     ] as MenuProps[],
-  //   } as HeaderNavigationProps,
-  // } as HeaderProps;
-
-  // console.log(JSON.stringify(dummyAuthData, null, 2))
+  
 
 
   // #region *Handler change of url. Note:* This handler is for dummy purpose. This should handler by your application.- NOT USE THIS ON PRODUCTION
@@ -2345,10 +2184,10 @@ const Header: React.FC = () => {
     }
   );
 
-  const headerClassNames = classNames("text-xl-bold mb-32", {
-    hidden: isHome,
-    block: !isHome,
-  });
+  // const headerClassNames = classNames("text-xl-bold mb-32", {
+  //   hidden: isHome,
+  //   block: !isHome,
+  // });
   // #endregion
 
   // #region *Notification args
