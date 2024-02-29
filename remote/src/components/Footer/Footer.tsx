@@ -6,7 +6,7 @@ import europa from "../../../assets/europa.svg";
 import acessibilidade from "../../../assets/acessibilidade.png";
 import republicaPortuguesa from "../../../assets/republica-portuguesa.png";
 import republicaPortuguesaSmall from "../../../assets/republica-portuguesa.svg";
-import { fetchFooterData } from "../../services/getApiFooterData";
+import { fetchFooterData, fetchFooterDataShared } from "../../services/getApiFooterData";
 import { FooterData, LinkData, LogoData } from "../../types/footerTypes";
 
 interface FooterProps {
@@ -20,7 +20,15 @@ const Footer: FC<FooterProps> = ({ isPublic }) => {
     const fetchData = async () => {
       try {
         const data = await fetchFooterData();
-        setFooterData(data);
+        const dataShared = await fetchFooterDataShared();
+
+        const mergedData = {
+          ...data,
+          ...dataShared
+        };
+
+        setFooterData(mergedData);
+        
         console.log("Footer Data fetched successfully:", data);
       } catch (error) {
         console.error("Error fetching footer data:", error);
@@ -29,10 +37,6 @@ const Footer: FC<FooterProps> = ({ isPublic }) => {
 
     fetchData();
   }, []);
-
-  useEffect(() => {
-    console.log('useEffect com dependencia isPublic', isPublic);
-  }, [isPublic]);
 
   const getLogoSrc = (src: string) => {
     switch (src) {

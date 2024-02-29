@@ -1,0 +1,47 @@
+{
+  "caption": "O ePortugal é financiado pelo Plano de Recuperação e Resiliência e o Next Generation EU.",
+  "card": {
+    "description": "Caso necessite de ajuda durante a realização do serviço, poderá utilizar qualquer um dos canais de comunicação à sua disposição e sempre que necessário esclareça todas as dúvidas ou partilhe uma sugestão.",
+    "links": [
+      {
+        "children": "Enviar mensagem",
+        "href": "?path=/docs/documentation-welcome--page",
+        "target": "_self"
+      },
+      {
+        "children": "Ver contactos",
+        "href": "?path=/docs/documentation-welcome--page",
+        "target": "_self"
+      },
+      {
+        "children": "Ver locais de atendimento",
+        "href": "?path=/docs/documentation-welcome--page",
+        "target": "_self"
+      }
+    ],
+    "title": "Precisa de ajuda com este serviço?"
+  },
+  "copyright": "© 2023 República Portuguesa. Todos os direitos reservados.",
+  "usefulLinks": [
+    {
+      "children": "Acessibilidade",
+      "href": "acessibilidade",
+      "target": "_self"
+    },
+    {
+      "children": "Termos e Condições",
+      "href": "/termos-e-condicoes",
+      "target": "_self"
+    },
+    {
+      "children": "Política de Privacidade",
+      "href": "/politica-de-privacidade",
+      "target": "_self"
+    },
+    {
+      "children": "Definições de Cookies",
+      "href": "/cookies",
+      "target": "_self"
+    }
+  ]
+}
