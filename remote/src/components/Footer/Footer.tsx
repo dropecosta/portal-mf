@@ -7,11 +7,8 @@ import acessibilidade from "../../../assets/acessibilidade.png";
 import republicaPortuguesa from "../../../assets/republica-portuguesa.png";
 import republicaPortuguesaSmall from "../../../assets/republica-portuguesa.svg";
 import { fetchFooterData, fetchFooterDataShared } from "../../services/getApiFooterData";
-import { FooterData, LinkData, LogoData } from "../../types/footerTypes";
+import { FooterData, LinkData, LogoData, FooterProps } from "../../types/footerTypes";
 
-interface FooterProps {
-  isPublic: boolean;
-}
 
 const Footer: FC<FooterProps> = ({ isPublic }) => {
   const [footerData, setFooterData] = useState<FooterData | null>(null);

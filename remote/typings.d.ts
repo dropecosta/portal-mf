@@ -3,5 +3,10 @@ declare module "*.png" {
   export default value;
 }
 
+declare module "*.svg" {
+  const content: string;
+  export default content;
+}
+
 declare module 'remote/Header';
 declare module 'remote/Footer';
