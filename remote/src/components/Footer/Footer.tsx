@@ -1,13 +1,13 @@
 import React, { FC, useEffect, useState } from "react";
+import { fetchFooterData, fetchFooterDataShared } from "../../services/getApiFooterData";
+import { FooterData, LinkData, LogoData, FooterProps } from "../../types/footerTypes";
 import { FederatedFooter, PublicFooter } from "@ama-pt/agora-design-system";
-import "@ama-pt/agora-design-system/dist/index.css";
 import prr from "../../../assets/prr.svg";
 import europa from "../../../assets/europa.svg";
 import acessibilidade from "../../../assets/acessibilidade.png";
 import republicaPortuguesa from "../../../assets/republica-portuguesa.png";
 import republicaPortuguesaSmall from "../../../assets/republica-portuguesa.svg";
-import { fetchFooterData, fetchFooterDataShared } from "../../services/getApiFooterData";
-import { FooterData, LinkData, LogoData, FooterProps } from "../../types/footerTypes";
+import "@ama-pt/agora-design-system/dist/index.css";
 
 
 const Footer: FC<FooterProps> = ({ isPublic }) => {
