@@ -69,19 +69,22 @@ const Header: React.FC = () => {
   const [toastTitle, setToastTitle] = useState<string>("");
   const [toastDescription, setToastDescription] = useState<string>("");
 
+
   // Using service to fetch
   // const [dummyData, setDummyData] = useState<any>(null);
 
   // useEffect(() => {
-  //   fetchDummyData()
-  //     .then((data: any) => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const data = await fetchDummyData();
   //       setDummyData(data);
   //       console.log("Data fetched successfully:", data);
-  //     })
-  //     .catch((error: any) => {
+  //     } catch (error) {
   //       console.error("Error fetching data:", error);
+  //     }
+  //   };
 
-  //     });
+  //   fetchData();
   // }, []);
 
   // #region *As a dummy example and please don't use it on production, there is no homepage and other pages, so the navigation has a logic of this is the home url, whenever it is different the page changes.
@@ -1552,11 +1555,8 @@ const Header: React.FC = () => {
 
   //#endregion
 
-  // Dummy Auth data - NOT USE THIS ON PRODUCTION
-  
 
-
-  // dummyAuthData customizado
+  // Dummy Auth data customizado - NOT USE THIS ON PRODUCTION
   const dummyAuthData = {
     ...data,
     headerGeneralOptions: {
@@ -1987,8 +1987,6 @@ const Header: React.FC = () => {
     } as HeaderNavigationProps,
   } as HeaderProps;
 
-  
-
 
   // #region *Handler change of url. Note:* This handler is for dummy purpose. This should handler by your application.- NOT USE THIS ON PRODUCTION
   useEffect(() => {
@@ -2048,7 +2046,7 @@ const Header: React.FC = () => {
     setData({
       ...data,
       ...dummyAuthData,
-      // ...apiDummyAuthData,~
+      // ...apiDummyAuthData,
 
       headerPrimaryNavigation: {
         ...dummyAuthData.headerPrimaryNavigation,
